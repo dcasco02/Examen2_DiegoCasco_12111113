@@ -5,6 +5,10 @@
  */
 package examen2_diegocasco_12111113;
 
+import java.util.ArrayList;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+
 /**
  *
  * @author dcasc
@@ -16,7 +20,24 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        actualizarArbol();
     }
+    private void actualizarArbol(){
+        if(jCheckBox_publicos.isSelected()){
+            DefaultTreeModel modelo = (DefaultTreeModel) jTree1.getModel();
+            DefaultMutableTreeNode root = new DefaultMutableTreeNode("Planetas");
+            for (Planetas planetas : publicos) {
+                DefaultMutableTreeNode Planetas = new DefaultMutableTreeNode(planetas);
+            }
+            modelo.setRoot(root);
+        }
+    }
+    private void agregarPlanetas(){
+        publicos.add(5000,13000,"Mercurio",400,300,"Terrestre");
+        
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,10 +56,11 @@ public class Main extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         CB_cientificos = new javax.swing.JComboBox<>();
         JF_NombreCientifico = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        JB_agregarCientificos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
         jCheckBox_publicos = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,13 +73,20 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Agregar Scientificos");
+        JB_agregarCientificos.setText("Agregar Scientificos");
+        JB_agregarCientificos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_agregarCientificosActionPerformed(evt);
+            }
+        });
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Planetas");
         jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane1.setViewportView(jTree1);
 
         jCheckBox_publicos.setText("Publicos");
+
+        jLabel1.setText("Cientificos");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -87,9 +116,10 @@ public class Main extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(42, 42, 42)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                                            .addComponent(JB_agregarCientificos, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                                             .addComponent(JF_NombreCientifico)
-                                            .addComponent(CB_cientificos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(CB_cientificos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGap(0, 0, Short.MAX_VALUE)))))
                         .addContainerGap())))
         );
@@ -109,12 +139,14 @@ public class Main extends javax.swing.JFrame {
                                 .addGap(12, 12, 12)
                                 .addComponent(JT_planeta2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(92, 92, 92)
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CB_cientificos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
                         .addComponent(JF_NombreCientifico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(JB_agregarCientificos, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCheckBox_publicos)
@@ -141,8 +173,13 @@ public class Main extends javax.swing.JFrame {
 
     private void CB_cientificosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CB_cientificosItemStateChanged
         // TODO add your handling code here:
-        
+            CB_cientificos.addItem(JF_NombreCientifico.getText());
     }//GEN-LAST:event_CB_cientificosItemStateChanged
+
+    private void JB_agregarCientificosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_agregarCientificosActionPerformed
+        // TODO add your handling code here:
+        CB_cientificos.addItem(JF_NombreCientifico.getText());
+    }//GEN-LAST:event_JB_agregarCientificosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,16 +218,19 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CB_cientificos;
+    private javax.swing.JButton JB_agregarCientificos;
     private javax.swing.JTextField JF_NombreCientifico;
     private javax.swing.JTextField JT_planeta1;
     private javax.swing.JTextField JT_planeta2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox_publicos;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
+ArrayList <Planetas> publicos;
+ArrayList <Planetas> planetas;
 }
