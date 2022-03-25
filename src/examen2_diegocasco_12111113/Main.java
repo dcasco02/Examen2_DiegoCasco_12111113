@@ -21,6 +21,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         this.setLocationRelativeTo(null);
+        agregarPlanetas();
         actualizarArbol();
     }
     private void actualizarArbol(){
@@ -34,8 +35,14 @@ public class Main extends javax.swing.JFrame {
         }
     }
     private void agregarPlanetas(){
-        publicos.add(5000,13000,"Mercurio",400,300,"Terrestre");
-        
+        publicos.add(new Planetas(5000,13000,"Mercurio",400,300));
+        publicos.add(new Planetas(100000,15000,"Venus",640,260));
+        publicos.add(new Planetas(140000,17000,"Tierra",760,570));
+        publicos.add(new Planetas(90000,12000,"Marte",360,360));
+        publicos.add(new Planetas(400000,40000,"Jupiter",340,310));
+        publicos.add(new Planetas(300000,30000,"Saturno",560,450));
+        publicos.add(new Planetas(200000,20000,"Urano",670,690));
+        publicos.add(new Planetas(200000,20000,"Neptuno",840,900));
     }
     
 

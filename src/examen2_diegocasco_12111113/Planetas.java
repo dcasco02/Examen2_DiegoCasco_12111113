@@ -15,18 +15,16 @@ public class Planetas {
     private String nombre;
     private int x;
     private int y;
-    private String tipoplaneta;
 
     public Planetas() {
     }
 
-    public Planetas(int size, int peso, String nombre, int x, int y, String tipoplaneta) {
+    public Planetas(int size, int peso, String nombre, int x, int y) {
         this.size = size;
         this.peso = peso;
         this.nombre = nombre;
         this.x = x;
         this.y = y;
-        this.tipoplaneta = tipoplaneta;
     }
 
     
@@ -69,14 +67,6 @@ public class Planetas {
     public void setY(int y) {
         this.y = y;
     }
-
-    public String getTipoplaneta() {
-        return tipoplaneta;
-    }
-
-    public void setTipoplaneta(String tipoplaneta) {
-        this.tipoplaneta = tipoplaneta;
-    }
-    
+  
     
 }
