@@ -16,6 +16,8 @@ public class Examen2_DiegoCasco_12111113 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Main m = new Main();
+        m.setVisible(true);
     }
     
 }
